@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarsController;
 use App\Http\Controllers\RoutesController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [RoutesController::class, 'index']);
 Route::get('/schedules', [RoutesController::class, 'schedules']);
+
 Route::get('/cars', [RoutesController::class, 'cars']);
+Route::post('/post-cars', [CarsController::class, 'store']);
+Route::resource('/get-cars', CarsController::class);
+
 Route::get('/members', [RoutesController::class, 'members']);
+
+Route::get('/history', [RoutesController::class, 'history']);

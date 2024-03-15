@@ -31,6 +31,11 @@ class RoutesController extends Controller
         return view('members');
     }
 
+    public function history()
+    {
+        return view('history');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

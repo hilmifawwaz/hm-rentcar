@@ -132,9 +132,9 @@
 
   <script>
     $(document).ready(function(){
-      $('#web-title').html('HM Rent Car - Data Pelanggan');
-      $('#page-title').html('Data Pelanggan');
-      $('#btnmember').addClass('active');
+      $('#web-title').html('HM Rent Car - Riwayat Sewa');
+      $('#page-title').html('Riwayat Sewa');
+      $('#btnriwayat').addClass('active');
     })
   </script>
 @endsection
