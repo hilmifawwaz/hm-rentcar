@@ -1,0 +1,603 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "HMRC API Documentation",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/cars": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get list cars",
+                "description": "get/mengambil data mobil",
+                "operationId": "get/cars",
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Store cars data",
+                "description": "input data mobil",
+                "operationId": "cars/store",
+                "requestBody": {
+                    "description": "form data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "merk",
+                                    "jenis",
+                                    "plat",
+                                    "tahun",
+                                    "transmisi",
+                                    "harga_weekdays",
+                                    "harga_weekend"
+                                ],
+                                "properties": {
+                                    "merk": {
+                                        "type": "string"
+                                    },
+                                    "jenis": {
+                                        "type": "string"
+                                    },
+                                    "plat": {
+                                        "type": "string"
+                                    },
+                                    "tahun": {
+                                        "type": "string"
+                                    },
+                                    "transmisi": {
+                                        "type": "string"
+                                    },
+                                    "harga_weekdays": {
+                                        "type": "string"
+                                    },
+                                    "harga_weekend": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            }
+        },
+        "/api/cars/{id}": {
+            "delete": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Delete car data",
+                "description": "hapus data mobil",
+                "operationId": "cars/delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "insert car Id on path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Edit cars data",
+                "description": "input data mobil",
+                "operationId": "cars/edit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "insert car Id on path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "form data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "merk",
+                                    "jenis",
+                                    "plat",
+                                    "tahun",
+                                    "transmisi",
+                                    "harga_weekdays",
+                                    "harga_weekend"
+                                ],
+                                "properties": {
+                                    "merk": {
+                                        "type": "string"
+                                    },
+                                    "jenis": {
+                                        "type": "string"
+                                    },
+                                    "plat": {
+                                        "type": "string"
+                                    },
+                                    "tahun": {
+                                        "type": "string"
+                                    },
+                                    "transmisi": {
+                                        "type": "string"
+                                    },
+                                    "harga_weekdays": {
+                                        "type": "string"
+                                    },
+                                    "harga_weekend": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            }
+        },
+        "/api/finance": {
+            "get": {
+                "tags": [
+                    "Finance"
+                ],
+                "summary": "Get list transaction",
+                "description": "mengambil data riwayat transaksi (masuk dan keluar)",
+                "operationId": "get/finance",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit value is number by default limit is 10. ex : ?limit=100",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    },
+                    {
+                        "name": "bulan",
+                        "in": "query",
+                        "description": "Untuk filter transaksi perbulan",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "01"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return json array data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Finance"
+                ],
+                "summary": "Store transaction data",
+                "description": "input data keuangan (pemasukan/pengeluaran)",
+                "operationId": "finance/store",
+                "requestBody": {
+                    "description": "form data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "keterangan",
+                                    "tanggal"
+                                ],
+                                "properties": {
+                                    "keterangan": {
+                                        "type": "string"
+                                    },
+                                    "masuk": {
+                                        "type": "number"
+                                    },
+                                    "keluar": {
+                                        "type": "number"
+                                    },
+                                    "tanggal": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            }
+        },
+        "/api/finance/{id}": {
+            "delete": {
+                "tags": [
+                    "Finance"
+                ],
+                "summary": "Delete transaction data",
+                "description": "hapus data transaksi keuangan",
+                "operationId": "finance/delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "insert transaction id on path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Finance"
+                ],
+                "summary": "Edit transaction data",
+                "description": "edit data transaksi",
+                "operationId": "finance/edit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "insert transaction id on path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "form data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "keterangan": {
+                                        "type": "string"
+                                    },
+                                    "masuk": {
+                                        "type": "number"
+                                    },
+                                    "keluar": {
+                                        "type": "number"
+                                    },
+                                    "tanggal": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            }
+        },
+        "/api/schedule": {
+            "get": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Get list schedules",
+                "description": "mengambil data jadwal peminjaman mobil",
+                "operationId": "get/schedules",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit value is number by default limit is 10. ex : ?limit=100",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    },
+                    {
+                        "name": "mulai",
+                        "in": "query",
+                        "description": "Tanggal awal untuk filter per-periode (opsional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "example": "2024-03-18"
+                    },
+                    {
+                        "name": "selesai",
+                        "in": "query",
+                        "description": "Tanggal akhir untuk filter per-periode (opsional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "example": "2024-03-18"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return json array data"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Store schedules data",
+                "description": "input data jadwal peminjaman mobil",
+                "operationId": "schedule/store",
+                "requestBody": {
+                    "description": "form data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id_mobil",
+                                    "nama_pelanggan",
+                                    "mulai",
+                                    "selesai",
+                                    "harga",
+                                    "jaminan",
+                                    "status",
+                                    "status_pembayaran"
+                                ],
+                                "properties": {
+                                    "id_mobil": {
+                                        "type": "number"
+                                    },
+                                    "nama_pelanggan": {
+                                        "type": "string"
+                                    },
+                                    "mulai": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "selesai": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "harga": {
+                                        "type": "string"
+                                    },
+                                    "jaminan": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "status_pembayaran": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            }
+        },
+        "/api/schedule/{id}": {
+            "delete": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Delete schedule data",
+                "description": "hapus data jadwal persewaan",
+                "operationId": "schedule/delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "insert schedule Id on path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Edit schedule data",
+                "description": "edit data jadwal persewaan",
+                "operationId": "schedule/edit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "insert schedule Id on path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "form data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id_mobil",
+                                    "nama_pelanggan",
+                                    "mulai",
+                                    "selesai",
+                                    "harga",
+                                    "jaminan",
+                                    "status",
+                                    "status_pembayaran"
+                                ],
+                                "properties": {
+                                    "id_mobil": {
+                                        "type": "number"
+                                    },
+                                    "nama_pelanggan": {
+                                        "type": "string"
+                                    },
+                                    "mulai": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "selesai": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "harga": {
+                                        "type": "string"
+                                    },
+                                    "jaminan": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "status_pembayaran": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": "return json array data"
+                    }
+                }
+            }
+        },
+        "/api/schedule/status/{id}": {
+            "patch": {
+                "tags": [
+                    "Schedule"
+                ],
+                "summary": "Update schedule status",
+                "description": "memperbarui status penyewaan (booking, proses, selesai)",
+                "operationId": "schedule/status/update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "insert schedule Id on path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "form data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "status",
+                                    "status_pembayaran"
+                                ],
+                                "properties": {
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "status_pembayaran": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return json array data"
+                    }
+                }
+            }
+        }
+    }
+}

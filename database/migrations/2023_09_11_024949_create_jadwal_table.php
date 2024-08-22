@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('jadwal', function (Blueprint $table) {
             $table->id('id_jadwal');
-            $table->bigInteger('id_member');
+            // $table->bigInteger('id_member');
             $table->bigInteger('id_mobil');
+            $table->string('nama_pelanggan');
             $table->dateTime('mulai');
             $table->dateTime('selesai');
             $table->string('harga');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->enum('status', ['booking', 'proses', 'selesai']);
             $table->enum('status_pembayaran', ['0', '1', '2']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

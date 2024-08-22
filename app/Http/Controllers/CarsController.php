@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -79,7 +80,10 @@ class CarsController extends Controller
                 'harga_weekend' => $request->harga_weekend
             ];
             Car::create($data);
-            return response()->json(['success' => 'Data berhasil ditambahkan']);
+            return response()->json([
+                'success' => 'Data berhasil ditambahkan',
+                'data' => $data
+            ]);
         }
     }
 
